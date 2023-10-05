@@ -1,7 +1,5 @@
 # Exercise 1: Create a function that calculates the area of different shapes. 
 # The function should take the shape type and its parameters as inputs.
-
-
 import math 
 def calculate_area(shape, *args):
     if shape=="square":
@@ -19,8 +17,6 @@ def calculate_area(shape, *args):
         radius = args[0]
         return math.pi * (radius ** 2)
    
-
-
 
 # Unit tests
 import unittest

@@ -1,9 +1,7 @@
 # Exercise 2: Write a function that accepts a string and returns the longest palindromic substring in that string.
-
 def longest_palindromic_substring(s):
     if not s:
         return ""
-
     n = len(s)
     dp = [[False] * n for _ in range(n)]
     start, max_length = 0, 1
