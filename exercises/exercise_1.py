@@ -17,7 +17,7 @@ def calculate_area(shape, *args):
         return base*height/2
     elif shape == "circle":
         radius = args[0]
-        return math.pi * (radius ** 2)
+        return round (math.pi * (radius **2) , 2)
    
 
 

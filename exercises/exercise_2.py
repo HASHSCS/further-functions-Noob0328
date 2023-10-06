@@ -1,29 +1,24 @@
 # Exercise 2: Write a function that accepts a string and returns the longest palindromic substring in that string.
 def longest_palindromic_substring(s):
-    if not s:
-        return ""
-    n = len(s)
-    dp = [[False] * n for _ in range(n)]
-    start, max_length = 0, 1
+    if len(s) <= 1:
+        return s 
+    longest_palindrome = ""
+    for i in range(len(s)):
+        odd_palindrome = expand_around_center(s, i, i)
+        even_palindrome = expand_around_center(s, i, i + 1)
+        palindrome = odd_palindrome if len(odd_palindrome) > len(even_palindrome) else even_palindrome
+        
+        if len(palindrome) > len(longest_palindrome):
+            longest_palindrome = palindrome
 
-    for i in range(n):
-        dp[i][i] = True
+    return longest_palindrome
 
-    for i in range(n - 1):
-        if s[i] == s[i + 1]:
-            dp[i][i + 1] = True
-            start = i
-            max_length = 2
-
-    for length in range(3, n + 1):
-        for i in range(n - length + 1):
-            j = i + length - 1
-            if dp[i + 1][j - 1] and s[i] == s[j]:
-                dp[i][j] = True
-                start = i
-                max_length = length
-
-    return s[start:start + max_length]
+def expand_around_center(s, left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+        left -= 1
+        right += 1
+    return s[left + 1:right]
+    
 # Unit tests
 import unittest
 
